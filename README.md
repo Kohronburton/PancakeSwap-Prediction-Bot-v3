@@ -8,12 +8,12 @@ This bot wins the majority of rounds on PancakeSwap & CandleGenie based on both 
 If you found this helpful then you can buy me a coffee at `0x4Dc71113329d2F4Dbab6eB006C330abD24a2eF0C`.
 
 ## Table of Content
-* [Installation](#installation)
-* [Usage](#usage)
-* [Strategies](#strategies)
-* [Screenshots](#screenshots)
-* [License](#license)
-* [Disclaimers](#disclaimers)
+* [Installation](#-installation)
+* [Usage](#-usage)
+* [Strategies](#-strategies)
+* [Screenshots](#-screenshots)
+* [License](#-license)
+* [Disclaimers](#-disclaimers)
 
 ## 💡 Installation
 
