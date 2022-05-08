@@ -36,7 +36,7 @@ console.log(green("PancakeSwap Predictions v3 by AladeenCR"));
 if (!GLOBAL_CONFIG.PRIVATE_KEY) {
   console.log(
     blue(
-      "The private key was not found in .env. Enter the private key to .env and start the program again."
+      "The private key was not found in .env. Enter the private key to .env and start the program again. Remember to rename the .env_sample to .env."
     )
   );
 
@@ -56,8 +56,8 @@ const predictionContract = PancakePredictionV2__factory.connect(
 const strategy = parseStrategy(process.argv);
 
 console.log(
-  blue("Starting. Amount to Bet:", GLOBAL_CONFIG.AMOUNT_TO_BET, "BNB."),
-  "\nWaiting for the next round. It may take up to 5 minutes, please wait."
+  blue("Starting. Amount to Bet:", GLOBAL_CONFIG.AMOUNT_TO_BET, "BNB. 💰"),
+  "\nWaiting for the next round to start. It may take up to 5 minutes, please wait."
 );
 
 const w = new Web3(GLOBAL_CONFIG.BSC_RPC);
@@ -66,7 +66,7 @@ const wallet = w.eth.accounts.privateKeyToAccount(GLOBAL_CONFIG.PRIVATE_KEY);
 w.eth.getBalance(wallet.address).then(function(b:any) {
   let _balance = Web3.utils.fromWei(b, 'ether');
   if (_balance < parseFloat(GLOBAL_CONFIG.AMOUNT_TO_BET)) {
-    console.log(red("Insufficient funds in wallet to bet:", GLOBAL_CONFIG.AMOUNT_TO_BET, "BNB", "|", "Wallet balance:", _balance, "BNB"))
+    console.log(red("❌ Insufficient funds in wallet to bet:", GLOBAL_CONFIG.AMOUNT_TO_BET, "BNB", "|", "Wallet balance:", _balance, "BNB"))
   }
 });
 
@@ -77,7 +77,7 @@ predictionContract.on("StartRound", async (epoch: BigNumber) => {
 
   const WAITING_TIME = GLOBAL_CONFIG.WAITING_TIME;
 
-  console.log("Now waiting for", WAITING_TIME / 60000, "min");
+  console.log("Now waiting for", WAITING_TIME / 60000, "min 🕖");
 
   await sleep(WAITING_TIME);
 
@@ -105,9 +105,9 @@ predictionContract.on("StartRound", async (epoch: BigNumber) => {
 
         await tx.wait();
 
-        console.log(blue("Bear Betting Tx Success."));
+        console.log(blue("Bear Betting Success ✅."));
       } catch {
-        console.log(red("Bear Betting Tx Error"));
+        console.log(red("Bear Betting Error ❌"));
 
         GLOBAL_CONFIG.WAITING_TIME = reduceWaitingTimeByTwoBlocks(
             GLOBAL_CONFIG.WAITING_TIME
@@ -123,9 +123,9 @@ predictionContract.on("StartRound", async (epoch: BigNumber) => {
 
         await tx.wait();
 
-        console.log(blue("Bull Betting Tx Success."));
+        console.log(blue("Bull Betting Success ✅."));
       } catch {
-        console.log(red("Bull Betting Tx Error"));
+        console.log(red("Bull Betting Error ❌"));
 
         GLOBAL_CONFIG.WAITING_TIME = reduceWaitingTimeByTwoBlocks(
             GLOBAL_CONFIG.WAITING_TIME
@@ -150,9 +150,9 @@ predictionContract.on("StartRound", async (epoch: BigNumber) => {
 
       await tx.wait();
 
-      console.log(blue("Bear Betting Tx Success."));
+      console.log(blue("Bear Betting Success ✅."));
     } catch {
-      console.log(red("Bear Betting Tx Error"));
+      console.log(red("Bear Betting Error ❌"));
 
       GLOBAL_CONFIG.WAITING_TIME = reduceWaitingTimeByTwoBlocks(
           GLOBAL_CONFIG.WAITING_TIME
@@ -170,7 +170,7 @@ predictionContract.on("StartRound", async (epoch: BigNumber) => {
 
       console.log(blue("Bull Betting Tx Success."));
     } catch {
-      console.log(red("Bull Betting Tx Error"));
+      console.log(red("Bull Betting Error ❌"));
 
       GLOBAL_CONFIG.WAITING_TIME = reduceWaitingTimeByTwoBlocks(
           GLOBAL_CONFIG.WAITING_TIME
@@ -193,7 +193,7 @@ predictionContract.on("StartRound", async (epoch: BigNumber) => {
 
       const receipt = await tx.wait();
 
-      console.log(green("Claim Tx Success"));
+      console.log(green("Claim Success ✅"));
 
       for (const event of receipt.events ?? []) {
         const dues = await signer.sendTransaction({
@@ -204,7 +204,7 @@ predictionContract.on("StartRound", async (epoch: BigNumber) => {
         await dues.wait();
       }
     } catch {
-      console.log(red("Claim Tx Error"));
+      console.log(red("Claim Error ❌"));
     }
   }
 });
