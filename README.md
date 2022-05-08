@@ -1,7 +1,7 @@
 
 # PancakeSwap Prediction Bot v3 🚀
 
-![PancakeSwap-Logo-Big](https://github.com/AladeenCR/PancakeSwapPredictionBot-2022/blob/main/pancake.png)
+![PancakeSwap-Logo-Big](https://github.com/AladeenCR/PancakeSwapPredictionBot-2022/blob/main/pancakehead.png)
 
 This bot wins the majority of rounds on PancakeSwap & CandleGenie based on both market conditions, and the strategy chosen.
 
